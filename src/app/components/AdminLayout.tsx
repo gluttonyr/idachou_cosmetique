@@ -5,12 +5,10 @@ import {
   Package,
   ShoppingBag,
   LogOut,
-  Plus,
-  TrendingUp,
+  Sparkles,
   LayoutDashboard,
   ChevronLeft,
   ChevronRight,
-  Sparkles,
 } from 'lucide-react';
 
 const navItems = [
@@ -25,13 +23,11 @@ const navItems = [
     icon: Package,
     to: '/admin/products',
   },
-
   {
     label: 'Commandes',
     icon: ShoppingBag,
     to: '/admin/orders',
   },
- 
 ];
 
 export const AdminLayout = () => {
@@ -40,9 +36,9 @@ export const AdminLayout = () => {
   const location = useLocation();
   const [collapsed, setCollapsed] = useState(false);
 
-  const handleLogout = () => {
-    logout();
-    navigate('/');
+  const handleLogout = async () => {
+    await logout();
+    navigate('/', { replace: true });
   };
 
   const isActive = (item: (typeof navItems)[0]) => {
@@ -69,9 +65,7 @@ export const AdminLayout = () => {
             minHeight: '72px',
           }}
         >
-          <div
-            className="flex-shrink-0 w-9 h-9 rounded-xl flex items-center justify-center bg-white bg-opacity-20"
-          >
+          <div className="flex-shrink-0 w-9 h-9 rounded-xl flex items-center justify-center bg-white bg-opacity-20">
             <Sparkles className="w-5 h-5 text-white" />
           </div>
           {!collapsed && (
@@ -139,24 +133,22 @@ export const AdminLayout = () => {
                   <span className="text-sm whitespace-nowrap overflow-hidden">{item.label}</span>
                 )}
                 {active && !collapsed && (
-                  <span
-                    className="ml-auto w-1.5 h-1.5 rounded-full bg-pink-500"
-                  />
+                  <span className="ml-auto w-1.5 h-1.5 rounded-full bg-pink-500" />
                 )}
               </Link>
             );
           })}
         </nav>
 
-        {/* Logout */}
-        <div className="px-2 py-4 border-t border-gray-100">
+        {/* ✅ Logout — épinglé tout en bas */}
+        <div className="px-2 pb-4 pt-2 border-t border-gray-100">
           <button
             onClick={handleLogout}
             title={collapsed ? 'Déconnexion' : undefined}
             className="w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-gray-500 hover:bg-red-50 hover:text-red-500 transition-all duration-150"
           >
             <LogOut className="flex-shrink-0 w-5 h-5" />
-            {!collapsed && <span className="text-sm">Déconnexion</span>}
+            {!collapsed && <span className="text-sm font-medium">Déconnexion</span>}
           </button>
         </div>
       </aside>

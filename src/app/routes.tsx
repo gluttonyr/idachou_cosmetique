@@ -17,6 +17,10 @@ import { ProtectedRoute } from './components/ProtectedRoute';
 
 export const router = createBrowserRouter([
   {
+        path: 'login',
+        Component: AdminLogin,
+      },
+  {
     path: '/',
     Component: Layout,
     children: [
@@ -33,10 +37,7 @@ export const router = createBrowserRouter([
     path: '/admin',
     Component: AdminLayout,
     children: [
-      {
-        path: 'login',
-        Component: AdminLogin,
-      },
+      
       {
         path: 'dashboard',
         element: (

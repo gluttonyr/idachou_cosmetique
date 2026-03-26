@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router';
 import { useAuth } from '../context/AuthContext';
 import { LogIn, AlertCircle, ArrowRight } from 'lucide-react';
+import { Link } from 'react-router';
 
 export const AdminLogin = () => {
   const [email, setEmail] = useState('');
@@ -101,10 +102,13 @@ export const AdminLogin = () => {
           </button>
         </form>
 
-        <div className="mt-6 p-4 bg-gray-50 rounded-lg">
-          <p className="text-sm text-gray-600 text-center">
-            <strong>Démo:</strong> admin@ipg.com / admin123
-          </p>
+        <div className="mt-6 p-4 bg-gray-50 rounded-lg flex items-center justify-center gap-2 text-sm text-gray-600">
+          <Link to="/" title={"Retour à l'accueil"} className="flex items-center gap-2 text-sm text-gray-600 hover:text-pink-600 transition-colors">
+            
+             Retour à l'accueil
+          </Link>
+          
+          
         </div>
       </div>
     </div>
