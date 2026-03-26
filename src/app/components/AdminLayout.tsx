@@ -65,9 +65,7 @@ export const AdminLayout = () => {
             minHeight: '72px',
           }}
         >
-          <div className="flex-shrink-0 w-9 h-9 rounded-xl flex items-center justify-center bg-white bg-opacity-20">
-            <Sparkles className="w-5 h-5 text-white" />
-          </div>
+          
           {!collapsed && (
             <span
               className="text-white font-bold text-sm leading-tight overflow-hidden whitespace-nowrap"
