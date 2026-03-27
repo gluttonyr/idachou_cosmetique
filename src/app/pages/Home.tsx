@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router';
+import { Link } from 'react-router-dom';
 import { getProducts } from '../utils/products';
 import type { Product } from '../context/CartContext';
 import { ProductCard } from '../components/ProductCard';
@@ -178,6 +178,11 @@ export const Home = () => {
             {cosmetiques.map((product) => (
               <ProductCard key={product.id} product={product} />
             ))}
+            {cosmetiques.length === 0 && (
+              <p className="text-gray-500 col-span-full text-center">Aucun cosmétique trouvé.</p>
+            )}
+          
+        
           </div>
         </div>
       </section>
@@ -198,6 +203,9 @@ export const Home = () => {
             {accessoires.map((product) => (
               <ProductCard key={product.id} product={product} />
             ))}
+            {accessoires.length === 0 && (
+              <p className="text-gray-500 col-span-full text-center">Aucun accessoire trouvé.</p>
+            )}
           </div>
         </div>
       </section>
@@ -218,6 +226,10 @@ export const Home = () => {
             {materiels.map((product) => (
               <ProductCard key={product.id} product={product} />
             ))}
+            {materiels.length === 0 && (
+              <p className="text-gray-500 col-span-full text-center">Aucun matériel trouvé.</p>
+            )}
+
           </div>
         </div>
       </section>

@@ -31,6 +31,9 @@ export const Cosmetiques = () => {
           {cosmetiques.map((product) => (
             <ProductCard key={product.id} product={product} />
           ))}
+          {cosmetiques.length === 0 && (
+            <p className="text-gray-500 col-span-full text-center">Aucun cosmétique trouvé.</p>
+          )}
         </div>
       </div>
     </div>

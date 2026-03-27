@@ -31,6 +31,9 @@ export const Materiels = () => {
           {materiels.map((product) => (
             <ProductCard key={product.id} product={product} />
           ))}
+          {materiels.length === 0 && (
+            <p className="text-gray-500 col-span-full text-center">Aucun matériel trouvé.</p>
+          )}
         </div>
       </div>
     </div>

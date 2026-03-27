@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router';
+import { Link } from 'react-router-dom';
 import { ShoppingBag, ArrowLeft, Eye, Calendar, User, Phone, Mail, Download, Check, XCircle, Loader2 } from 'lucide-react';
 import { venteService } from '../service/venteService';
 import html2pdf from "html2pdf.js"

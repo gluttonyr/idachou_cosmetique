@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router';
+import { Link } from 'react-router-dom';
 import { Package, ShoppingBag, Plus, TrendingUp, Eye, Calendar, Loader2 } from 'lucide-react';
 import { venteService } from '../service/venteService';
 import { productService } from '../service/produitService';

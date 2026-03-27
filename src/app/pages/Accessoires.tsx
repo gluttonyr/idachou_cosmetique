@@ -30,6 +30,9 @@ export const Accessoires = () => {
           {accessoires.map((product) => (
             <ProductCard key={product.id} product={product} />
           ))}
+          {accessoires.length === 0 && (
+            <p className="text-gray-500 col-span-full text-center">Aucun accessoire trouvé.</p>
+          )}
         </div>
       </div>
     </div>

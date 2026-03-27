@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { useNavigate } from 'react-router';
+import { useNavigate } from 'react-router-dom';
 import { useCart } from '../context/CartContext';
 import { CheckCircle, AlertCircle, Loader2, Upload, Phone } from 'lucide-react';
 import supabase from '../utils/supabase';
