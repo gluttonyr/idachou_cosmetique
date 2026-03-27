@@ -35,7 +35,7 @@ export const ProductCard = ({ product }: ProductCardProps) => {
         </p>
         <div className="flex items-center justify-between">
           <span className="text-xl font-bold text-pink-600">
-            {product.prix ? product.prix.toFixed(2) : 'N/A'} €
+            {product.prix ? product.prix.toFixed(2) : 'N/A'} FCFA
           </span>
           <button
             onClick={handleAddToCart}
