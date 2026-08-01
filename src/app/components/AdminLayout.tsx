@@ -168,7 +168,7 @@ export const AdminLayout = () => {
             <h1 className="text-lg font-bold text-gray-800">
               {navItems.find(isActive)?.label ?? 'Administration'}
             </h1>
-            <p className="text-xs text-gray-400">IDACHOU PERLAGE GLOSS</p>
+            <p className="text-xs text-gray-400">IDACH LIP'S</p>
           </div>
           <div className="flex items-center gap-2">
             <div

@@ -45,7 +45,7 @@ export const AdminLogin = () => {
           <h1 className="text-3xl font-bold text-gray-800 mb-2">
             Espace Administrateur
           </h1>
-          <p className="text-gray-600">IDACHOU PERLAGE GLOSS</p>
+          <p className="text-gray-600">IDACH LIP'S</p>
         </div>
 
         <form onSubmit={handleSubmit} className="space-y-6">

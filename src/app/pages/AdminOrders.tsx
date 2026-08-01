@@ -124,7 +124,7 @@ export const AdminOrders = () => {
   // </head>
   // <body>
   //     <div class="header">
-  //         <h1>IDACHOU PERLAGE GLOSS</h1>
+  //         <h1>IDACH LIP'S</h1>
   //         <p>Reçu de commande</p>
   //     </div>
   //     <div class="info-section">
@@ -156,7 +156,7 @@ export const AdminOrders = () => {
   //         </table>
   //     </div>
   //     <div class="total-section"><strong>Total: <span class="total-amount">${vente.prixTotal.toFixed(2)} FCFA</span></strong></div>
-  //     <div class="footer"><p>Merci pour votre commande !</p><p>IDACHOU PERLAGE GLOSS - ${new Date().getFullYear()}</p></div>
+  //     <div class="footer"><p>Merci pour votre commande !</p><p>IDACH LIP'S - ${new Date().getFullYear()}</p></div>
   // </body>
   // </html>`;
 
@@ -204,7 +204,7 @@ export const AdminOrders = () => {
 </head>
 <body>
     <div class="header">
-        <h1>IDACHOU PERLAGE GLOSS</h1>
+        <h1>IDACH LIP'S</h1>
         <p>Reçu de commande</p>
     </div>
     <div class="info-section">
@@ -236,7 +236,7 @@ export const AdminOrders = () => {
         </table>
     </div>
     <div class="total-section"><strong>Total: <span class="total-amount">${vente.prixTotal?.toFixed(2)} FCFA</span></strong></div>
-    <div class="footer"><p>Merci pour votre commande !</p><p>IDACHOU PERLAGE GLOSS - ${new Date().getFullYear()}</p></div>
+    <div class="footer"><p>Merci pour votre commande !</p><p>IDACH LIP'S - ${new Date().getFullYear()}</p></div>
 </body>
 </html>`;
 
