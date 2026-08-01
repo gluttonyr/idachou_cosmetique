@@ -10,7 +10,7 @@ export const AdminLogin = () => {
   const [error, setError] = useState('');
   const { login, isAdmin } = useAuth();
   const navigate = useNavigate();
-  const [isLoading,setIsLoading]=useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   React.useEffect(() => {
     if (isAdmin) {
@@ -23,7 +23,7 @@ export const AdminLogin = () => {
     setIsLoading(true);
     setError('');
 
-    try{
+    try {
       await login(email, password);
       setIsLoading(false);
       console.log('Connexion réussie');
@@ -86,29 +86,26 @@ export const AdminLogin = () => {
 
           <button
             type="submit"
-            className="w-full bg-pink-600 text-white py-3 rounded-lg hover:bg-pink-700 transition-colors font-semibold"
+            className="w-full bg-pink-600 text-white py-3 rounded-lg hover:bg-pink-700 transition-colors font-semibold flex items-center justify-center"
           >
-             {isLoading ? (
-                          <div className="flex items-center gap-2">
-                            <div className="w-5 h-5 border-2 border-primary-foreground/30 border-t-primary-foreground rounded-full animate-spin" />
-                            Connexion...
-                          </div>
-                        ) : (
-                          <div>
-                            Se connecter
-                       
-                          </div>
-                        )}
+            {isLoading ? (
+              <>
+                <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+                <span>Connexion...</span>
+              </>
+            ) : (
+              <span>Se connecter</span>
+            )}
           </button>
         </form>
 
         <div className="mt-6 p-4 bg-gray-50 rounded-lg flex items-center justify-center gap-2 text-sm text-gray-600">
           <Link to="/" title={"Retour à l'accueil"} className="flex items-center gap-2 text-sm text-gray-600 hover:text-pink-600 transition-colors">
-            
-             Retour à l'accueil
+
+            Retour à l'accueil
           </Link>
-          
-          
+
+
         </div>
       </div>
     </div>

@@ -12,7 +12,7 @@ export const Header = () => {
       <div className="container mx-auto px-4 py-3">
         <div className="flex items-center justify-between">
           <Link to="/" className="flex items-center gap-2">
-            <img src='https://nxkyhagpncgcbmzbebwh.supabase.co/storage/v1/object/public/static/logo.jpeg' alt="IPG Logo" className="h-10 w-auto" />
+            <img src='https://nxkyhagpncgcbmzbebwh.supabase.co/storage/v1/object/public/static/logo.png' alt="IPG Logo" className="h-15 w-auto" />
           </Link>
 
           <nav className="hidden md:flex items-center gap-6">
@@ -32,13 +32,13 @@ export const Header = () => {
 
           <div className="flex items-center gap-3">
             {/* User Avatar circulaire → /login ou /admin */}
-            <Link
+            {/* <Link
               to="/login"
               className="w-9 h-9 rounded-full bg-pink-100 border-2 border-pink-300 flex items-center justify-center hover:bg-pink-200 hover:border-pink-500 transition-colors"
               title="Connexion / Admin"
             >
               <User className="w-5 h-5 text-pink-600" />
-            </Link>
+            </Link> */}
 
             {/* Panier */}
             <Link

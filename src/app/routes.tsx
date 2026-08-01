@@ -13,7 +13,10 @@ import { AdminDashboard } from './pages/AdminDashboard';
 import { AdminProducts } from './pages/AdminProducts';
 import { AdminOrders } from './pages/AdminOrders';
 import { AdminProductForm } from './pages/AdminProductForm';
+
+import { AdminDiscussionChat } from './pages/AdminDiscussionChat';
 import { ProtectedRoute } from './components/ProtectedRoute';
+import { AdminDiscussionsList } from './pages/AdminDiscussionList';
 
 export const router = createBrowserRouter([
   {
@@ -78,6 +81,23 @@ export const router = createBrowserRouter([
           </ProtectedRoute>
         ),
       },
+      {
+        path: 'discussions',
+        element: (
+          <ProtectedRoute>
+            <AdminDiscussionsList />
+          </ProtectedRoute>
+        ),
+      },
+      {
+        path: 'discussions/:id',
+        element: (
+          <ProtectedRoute>
+            <AdminDiscussionChat />
+          </ProtectedRoute>
+        ),
+      },
+      
     ],
   },
 ]);

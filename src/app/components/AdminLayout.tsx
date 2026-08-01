@@ -9,6 +9,7 @@ import {
   LayoutDashboard,
   ChevronLeft,
   ChevronRight,
+  MessageCircle,
 } from 'lucide-react';
 
 const navItems = [
@@ -27,6 +28,11 @@ const navItems = [
     label: 'Commandes',
     icon: ShoppingBag,
     to: '/admin/orders',
+  },
+  {
+    label: 'Discussions',
+    icon: MessageCircle,
+    to: '/admin/discussions',
   },
 ];
 
