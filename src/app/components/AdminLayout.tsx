@@ -10,6 +10,8 @@ import {
   ChevronLeft,
   ChevronRight,
   MessageCircle,
+  Menu,
+  X,
 } from 'lucide-react';
 
 const navItems = [
@@ -40,7 +42,8 @@ export const AdminLayout = () => {
   const { logout } = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
-  const [collapsed, setCollapsed] = useState(false);
+  const [collapsed, setCollapsed] = useState(false); // desktop: réduit / étendu
+  const [mobileOpen, setMobileOpen] = useState(false); // mobile: drawer ouvert / fermé
 
   const handleLogout = async () => {
     await logout();
@@ -52,11 +55,29 @@ export const AdminLayout = () => {
     return location.pathname.startsWith(item.to);
   };
 
+  const handleNavClick = () => {
+    // Sur mobile, on referme le drawer après avoir cliqué un lien
+    setMobileOpen(false);
+  };
+
   return (
     <div className="min-h-screen flex bg-gray-50" style={{ fontFamily: "'DM Sans', sans-serif" }}>
+      {/* Overlay mobile (derrière le drawer) */}
+      {mobileOpen && (
+        <div
+          className="fixed inset-0 bg-black/50 z-40 md:hidden"
+          onClick={() => setMobileOpen(false)}
+        />
+      )}
+
       {/* Sidebar */}
       <aside
-        className="relative flex flex-col bg-white shadow-xl transition-all duration-300 ease-in-out"
+        className={`
+          flex flex-col bg-white shadow-xl transition-all duration-300 ease-in-out
+          fixed md:relative inset-y-0 left-0 z-50
+          ${mobileOpen ? 'translate-x-0' : '-translate-x-full'}
+          md:translate-x-0
+        `}
         style={{
           width: collapsed ? '72px' : '240px',
           minHeight: '100vh',
@@ -71,22 +92,28 @@ export const AdminLayout = () => {
             minHeight: '72px',
           }}
         >
-          
           {!collapsed && (
             <span
-              className="text-white font-bold text-sm leading-tight overflow-hidden whitespace-nowrap"
+              className="text-white font-bold text-sm leading-tight overflow-hidden whitespace-nowrap flex-1"
               style={{ letterSpacing: '0.01em' }}
             >
               IDACHOU<br />
               <span className="font-normal opacity-80 text-xs">PERLAGE GLOSS</span>
             </span>
           )}
+          {/* Bouton fermeture, visible uniquement en mobile */}
+          <button
+            onClick={() => setMobileOpen(false)}
+            className="md:hidden text-white/80 hover:text-white p-1"
+          >
+            <X className="w-5 h-5" />
+          </button>
         </div>
 
-        {/* Toggle Button */}
+        {/* Toggle Button (desktop uniquement, collapse/expand) */}
         <button
           onClick={() => setCollapsed(!collapsed)}
-          className="absolute -right-3 top-20 z-10 w-6 h-6 bg-white border border-pink-200 rounded-full flex items-center justify-center shadow-md hover:bg-pink-50 transition-colors"
+          className="hidden md:flex absolute -right-3 top-20 z-10 w-6 h-6 bg-white border border-pink-200 rounded-full items-center justify-center shadow-md hover:bg-pink-50 transition-colors"
         >
           {collapsed
             ? <ChevronRight className="w-3 h-3 text-pink-500" />
@@ -95,7 +122,7 @@ export const AdminLayout = () => {
         </button>
 
         {/* Nav */}
-        <nav className="flex-1 px-2 py-4 space-y-1 overflow-hidden">
+        <nav className="flex-1 px-2 py-4 space-y-1 overflow-hidden overflow-y-auto">
           {!collapsed && (
             <p className="text-xs font-semibold text-gray-400 uppercase tracking-widest px-3 mb-3">
               Menu
@@ -108,6 +135,7 @@ export const AdminLayout = () => {
                 key={item.to}
                 to={item.to}
                 title={collapsed ? item.label : undefined}
+                onClick={handleNavClick}
                 className="flex items-center gap-3 px-3 py-2.5 rounded-xl transition-all duration-150 group"
                 style={{
                   background: active
@@ -144,7 +172,7 @@ export const AdminLayout = () => {
           })}
         </nav>
 
-        {/* ✅ Logout — épinglé tout en bas */}
+        {/* Logout — épinglé tout en bas */}
         <div className="px-2 pb-4 pt-2 border-t border-gray-100">
           <button
             onClick={handleLogout}
@@ -158,17 +186,26 @@ export const AdminLayout = () => {
       </aside>
 
       {/* Main */}
-      <div className="flex-1 flex flex-col overflow-hidden">
+      <div className="flex-1 flex flex-col overflow-hidden w-full">
         {/* Top bar */}
         <header
-          className="bg-white shadow-sm px-6 flex items-center justify-between"
+          className="bg-white shadow-sm px-4 md:px-6 flex items-center justify-between"
           style={{ minHeight: '72px', borderBottom: '1px solid #f0e6ef' }}
         >
-          <div>
-            <h1 className="text-lg font-bold text-gray-800">
-              {navItems.find(isActive)?.label ?? 'Administration'}
-            </h1>
-            <p className="text-xs text-gray-400">IDACH LIP'S</p>
+          <div className="flex items-center gap-3">
+            {/* Bouton hamburger, visible uniquement en mobile */}
+            <button
+              onClick={() => setMobileOpen(true)}
+              className="md:hidden p-2 -ml-2 rounded-lg hover:bg-gray-100 text-gray-600"
+            >
+              <Menu className="w-5 h-5" />
+            </button>
+            <div>
+              <h1 className="text-lg font-bold text-gray-800">
+                {navItems.find(isActive)?.label ?? 'Administration'}
+              </h1>
+              <p className="text-xs text-gray-400">IDACH LIP'S</p>
+            </div>
           </div>
           <div className="flex items-center gap-2">
             <div
@@ -181,7 +218,7 @@ export const AdminLayout = () => {
         </header>
 
         {/* Page content */}
-        <main className="flex-1 overflow-auto p-6">
+        <main className="flex-1 overflow-auto p-4 md:p-6">
           <Outlet />
         </main>
       </div>
