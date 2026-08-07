@@ -24,7 +24,7 @@ export function generateUssd({ operateur, identifiant, montant, frais = 0 }: Gen
   const templates: Record<Operateur, string> = {
     // Moov: le code secret (PIN) n'est jamais généré côté app -> on laisse
     // le champ ouvert par un "*" final, l'utilisateur tape son PIN puis "Appeler"
-    moov: `*155*2*2*${identifiant}*${identifiant}*${montantTotal}*`,
+    moov: `*155*2*2*${identifiant}*${identifiant}*${montantTotal}#`,
     // Tmoney/Yas: chaîne complète, le PIN est demandé par le réseau après le dial
     yas: `*145*5*${montantTotal}*${identifiant}#`,
   };
