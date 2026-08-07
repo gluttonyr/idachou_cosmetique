@@ -64,7 +64,7 @@ export const Cart = () => {
                       {item.name}
                     </Link>
                     <p className="text-gray-600 text-sm mb-2">
-                      {item.prix?.toFixed(2)} €
+                      {item.prix?.toFixed(2)} FCFA
                     </p>
 
                     <div className="flex items-center gap-4">
@@ -101,7 +101,7 @@ export const Cart = () => {
 
                   <div className="text-right">
                     <p className="font-bold text-gray-800">
-                      {(item.prix * item.quantity)?.toFixed(2)} €
+                      {(item.prix * item.quantity)?.toFixed(2)} FCFA
                     </p>
                   </div>
                 </div>
@@ -119,7 +119,7 @@ export const Cart = () => {
               <div className="space-y-3 mb-6">
                 <div className="flex justify-between text-gray-600">
                   <span>Sous-total</span>
-                  <span>{getTotalprix()?.toFixed(2)} €</span>
+                  <span>{getTotalprix()?.toFixed(2)} FCFA</span>
                 </div>
                 <div className="flex justify-between text-gray-600">
                   <span>Livraison</span>
@@ -128,7 +128,7 @@ export const Cart = () => {
                 <div className="border-t pt-3 flex justify-between font-bold text-xl text-gray-800">
                   <span>Total</span>
                   <span className="text-pink-600">
-                    {getTotalprix()?.toFixed(2)} €
+                    {getTotalprix()?.toFixed(2)} FCFA
                   </span>
                 </div>
               </div>
