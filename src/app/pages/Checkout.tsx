@@ -44,6 +44,7 @@ interface Operateur {
   code: 'moov' | 'yas';
   image: string;
   numero?: string; 
+  code_marchand?: string;
 }
 
 // ─────────────────────────────────────────────
@@ -135,31 +136,36 @@ export const Checkout = () => {
 
   // ── Sélection d'un opérateur ──
   const handleSelectOperateur = (op: Operateur) => {
-    setError(null);
-    try {
-      const phoneClean = op.numero // 8 derniers chiffres
-      const result = generateUssd({
-        operateur: op.code,
-        numero: phoneClean!,
-        montant: getTotalprix(),
-        frais: 0,
-      });
+  setError(null);
+  try {
+    // Priorité au code marchand ; repli sur le numéro si absent
+    const identifiant = op.code_marchand || op.numero;
 
-      setSelectedOperateur(op);
-      setTelLink(result.telLink);
-      setMontantTotal(result.montantTotal);
-      setStep('paiement');
-
-      // Lance automatiquement le lien sur mobile
-      if (isMobile()) {
-        setTimeout(() => {
-          window.location.href = result.telLink;
-        }, 800);
-      }
-    } catch (err: any) {
-      setError(err.message ?? 'Erreur lors de la génération du lien de paiement.');
+    if (!identifiant) {
+      throw new Error("Aucun identifiant de paiement configuré pour cet opérateur.");
     }
-  };
+
+    const result = generateUssd({
+      operateur: op.code,
+      identifiant,
+      montant: getTotalprix(),
+      frais: 0,
+    });
+
+    setSelectedOperateur(op);
+    setTelLink(result.telLink);
+    setMontantTotal(result.montantTotal);
+    setStep('paiement');
+
+    if (isMobile()) {
+      setTimeout(() => {
+        window.location.href = result.telLink;
+      }, 800);
+    }
+  } catch (err: any) {
+    setError(err.message ?? 'Erreur lors de la génération du lien de paiement.');
+  }
+};
 
   // ── Sélection du fichier preuve ──
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
